@@ -1,0 +1,32 @@
+# Contribution from the Crick HPC team
+# uploaded by J. Sassmannshausen
+# updated: S. Wolfsheimer, SURF
+easyblock = 'PackedBinary'
+
+name = 'Maven'
+version = '3.9.12'
+versionsuffix = '-Java-%(javaver)s'
+
+homepage = 'https://maven.apache.org/index.html'
+description = """Binary maven install, Apache Maven is a software project management and comprehension tool. Based on
+the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a
+central piece of information.
+"""
+
+toolchain = SYSTEM
+
+source_urls = ['https://archive.apache.org/dist/maven/maven-%(version_major)s/%(version)s/binaries/']
+sources = ['apache-maven-%(version)s-bin.tar.gz']
+checksums = ['fa2c9948729296c23afd18fd01a90f62cdda09a46191b54a8bc3764c2eee812e']
+
+dependencies = [
+    ('Java', '23.0.2'),
+]
+
+sanity_check_paths = {
+    'files': ['bin/mvn'],
+    'dirs': [],
+}
+sanity_check_commands = ['mvn --version']
+
+moduleclass = 'devel'
